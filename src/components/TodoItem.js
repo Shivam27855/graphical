@@ -9,7 +9,7 @@ function ToDoItem(props) {
 
   //Added edit feature in editFeature branch
   //Added Delete feature in editFeature branch
-  const [todoItems,setTodoItems]=useState(props.item);
+  const [todoItems,setTodoItems]=useState([]);
   const [emptyToDoList,setEmptyToDoList]=useState(props.emptyToDoList);
   const [newItem,setNewItem]=useState();
   const [userId,setUserId]=useState(props.userId);
@@ -235,7 +235,7 @@ useEffect(()=>{
     <div>
       <h1>adfas {userId}</h1>
       <input type="text" value={newItem} placeholder="Enter Item" onChange={handleAddText}/><button onClick={handleAdd}>Create Item</button>
-      {emptyToDoList==false?<ul>
+      {emptyToDoList==false && todoItems.length!=0?<ul>
     {todoItems.map(
       (todoItem) => <li key={todoItem.todoId}>
                           {todoItem.todoItem}
