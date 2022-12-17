@@ -12,11 +12,7 @@ function ToDoItem(props) {
   const [todoItems,setTodoItems]=useState(props.item);
   const [emptyToDoList,setEmptyToDoList]=useState(props.emptyToDoList);
   const [newItem,setNewItem]=useState();
-  const [userId,setUserId]=useState(props.userId)
-
-  useEffect(() => {
-    setUserId(props.userId);
-  });
+  const [userId,setUserId]=useState(props.userId);
   let handleEdit=(todoId)=>
   {
   //const baseURL = "http://localhost:5000";
@@ -188,8 +184,13 @@ try {
 }
 }
 
-
 useEffect(() => {
+  setUserId(props.userId);
+  alert(userId);
+  
+});
+
+useEffect(()=>{
   const baseURL ="https://calm-lime-antelope-vest.cyclic.app";
   try {
     fetch(`${baseURL}/getToDoItems`, {
@@ -223,15 +224,13 @@ useEffect(() => {
     alert("Delete Fail")
     console.log(err);
   }
-}, [userId]);
-
+},[userId])
 
 
   return (
     <div>
-      <h1>adfas {props.userId}</h1>
+      <h1>adfas {userId}</h1>
       <input type="text" value={newItem} placeholder="Enter Item" onChange={handleAddText}/><button onClick={handleAdd}>Create Item</button>
-     <h1>List is {todoItems}</h1>
       {emptyToDoList==false?<ul>
     {todoItems.map(
       (todoItem) => <li key={todoItem.todoId}>
@@ -239,7 +238,7 @@ useEffect(() => {
                           <button onClick={()=>handleEdit(todoItem.todoId)}>Edit</button>
                           <button onClick={()=>handleDelete(todoItem.todoId)}>Delete</button>
                     </li>
-                  )}
+                  )};
   </ul>:<h1>No Todo Item to show</h1>}
 
     </div>
