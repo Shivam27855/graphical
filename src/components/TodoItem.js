@@ -183,7 +183,7 @@ try {
 }
 }
 
-React.useEffect(() => {
+useEffect(() => {
   setTodoItems(todoItems);
 }, [todoItems]);
 
