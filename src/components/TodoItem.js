@@ -242,7 +242,7 @@ useEffect(()=>{
                           <button onClick={()=>handleEdit(todoItem.todoId)}>Edit</button>
                           <button onClick={()=>handleDelete(todoItem.todoId)}>Delete</button>
                     </li>
-                  )};
+                  )}
   </ul>:<h1>No Todo Item to show</h1>}
 
     </div>
