@@ -12,6 +12,11 @@ function ToDoItem(props) {
   const [todoItems,setTodoItems]=useState(props.item);
   const [emptyToDoList,setEmptyToDoList]=useState(props.emptyToDoList);
   const [newItem,setNewItem]=useState();
+  const [userId,setUserId]=useState(props.userId)
+
+  useEffect(() => {
+    setUserId(props.userId);
+  });
   let handleEdit=(todoId)=>
   {
   //const baseURL = "http://localhost:5000";
@@ -218,7 +223,7 @@ useEffect(() => {
     alert("Delete Fail")
     console.log(err);
   }
-}, []);
+}, [userId]);
 
 
 
