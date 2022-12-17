@@ -186,7 +186,7 @@ try {
 
 useEffect(() => {
   setUserId(props.userId);
-  alert(userId);
+  //alert(userId);
   
 });
 
