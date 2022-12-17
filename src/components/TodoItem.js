@@ -184,8 +184,8 @@ try {
 }
 
 useEffect(() => {
-  console.log(props.userId)
-}, [props.userId])
+  console.log("Hello")
+})
 
 
 
