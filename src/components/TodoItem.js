@@ -191,39 +191,43 @@ useEffect(() => {
 });
 
 useEffect(()=>{
-  const baseURL ="https://calm-lime-antelope-vest.cyclic.app";
-  try {
-    fetch(`${baseURL}/getToDoItems`, {
-      method: "POST",
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      userId:parseInt(props.userId)
-    }),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-
-        if(json.error=="No Todo Item")
-        {
-          console.log(json);
-            setEmptyToDoList(true);
-            console.log(emptyToDoList);
-            //alert(emptyToDoList);
-            
-        }
-        else{
-            setTodoItems(json);
-            console.log(emptyToDoList);
-            setEmptyToDoList(false);
-        }
-
-        //setTodoItems(json);
-        console.log(todoItems)
+  if(userId!=null)
+  {
+    const baseURL ="https://calm-lime-antelope-vest.cyclic.app";
+    try {
+      fetch(`${baseURL}/getToDoItems`, {
+        method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId:parseInt(props.userId)
+      }),
       })
-  } catch (err) {
-    alert("Delete Fail")
-    console.log(err);
+        .then((res) => res.json())
+        .then((json) => {
+  
+          if(json.error=="No Todo Item")
+          {
+            console.log(json);
+              setEmptyToDoList(true);
+              console.log(emptyToDoList);
+              //alert(emptyToDoList);
+              
+          }
+          else{
+              setTodoItems(json);
+              console.log(emptyToDoList);
+              setEmptyToDoList(false);
+          }
+  
+          //setTodoItems(json);
+          console.log(todoItems)
+        })
+    } catch (err) {
+      alert("Delete Fail")
+      console.log(err);
+    }
   }
+  
 },[userId])
 
 
