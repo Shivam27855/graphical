@@ -183,9 +183,42 @@ try {
 }
 }
 
+
 useEffect(() => {
-  setTodoItems(todoItems);
-}, [todoItems]);
+  const baseURL ="https://calm-lime-antelope-vest.cyclic.app";
+  try {
+    fetch(`${baseURL}/getToDoItems`, {
+      method: "POST",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      userId:parseInt(props.userId)
+    }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+
+        if(json.error=="No Todo Item")
+        {
+          console.log(json);
+            setEmptyToDoList(true);
+            console.log(emptyToDoList);
+            //alert(emptyToDoList);
+            
+        }
+        else{
+            setTodoItems(json);
+            console.log(emptyToDoList);
+            setEmptyToDoList(false);
+        }
+
+        //setTodoItems(json);
+        console.log(todoItems)
+      })
+  } catch (err) {
+    alert("Delete Fail")
+    console.log(err);
+  }
+}, []);
 
 
 
@@ -201,7 +234,7 @@ useEffect(() => {
                           <button onClick={()=>handleEdit(todoItem.todoId)}>Edit</button>
                           <button onClick={()=>handleDelete(todoItem.todoId)}>Delete</button>
                     </li>
-                  )};
+                  )}
   </ul>:<h1>No Todo Item to show</h1>}
 
     </div>
