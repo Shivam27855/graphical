@@ -183,9 +183,9 @@ try {
 }
 }
 
-useEffect(() => {
-  console.log("Hello")
-})
+React.useEffect(() => {
+  setTodoItems(todoItems);
+}, [todoItems]);
 
 
 
