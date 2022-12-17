@@ -195,7 +195,7 @@ useEffect(() => {
       <h1>adfas {props.userId}</h1>
       <input type="text" value={newItem} placeholder="Enter Item" onChange={handleAddText}/><button onClick={handleAdd}>Create Item</button>
      <h1>List is {todoItems}</h1>
-      {emptyToDoList==false?<ul>
+      {/* {emptyToDoList==false?<ul>
     {todoItems.map(
       (todoItem) => <li key={todoItem.todoId}>
                           {todoItem.todoItem}
@@ -203,7 +203,7 @@ useEffect(() => {
                           <button onClick={()=>handleDelete(todoItem.todoId)}>Delete</button>
                     </li>
                   )};
-  </ul>:<h1>No Todo Item to show</h1>}
+  </ul>:<h1>No Todo Item to show</h1>} */}
 
     </div>
     
