@@ -183,6 +183,10 @@ try {
 }
 }
 
+useEffect(() => {
+  console.log(todoItems)
+}, [todoItems])
+
 
 
   return (
