@@ -184,8 +184,9 @@ try {
 }
 
 useEffect(() => {
-  console.log(props.userId)
-}, [props.userId])
+  console.log(props.item)
+  setTodoItems(props.item)
+}, [props.item])
 
 
 
