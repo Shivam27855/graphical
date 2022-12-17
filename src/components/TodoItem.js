@@ -189,6 +189,7 @@ try {
     <div>
       <h1>adfas {props.userId}</h1>
       <input type="text" value={newItem} placeholder="Enter Item" onChange={handleAddText}/><button onClick={handleAdd}>Create Item</button>
+     <h1>List is {todoItems}</h1>
       {emptyToDoList==false?<ul>
     {todoItems.map(
       (todoItem) => <li key={todoItem.todoId}>
