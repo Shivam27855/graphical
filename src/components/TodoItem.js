@@ -184,7 +184,7 @@ try {
 }
 
 useEffect(() => {
-  console.log(todoItems)
+  console.log(props.item)
 }, [todoItems])
 
 
