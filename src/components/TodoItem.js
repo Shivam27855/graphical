@@ -2,7 +2,10 @@ import logo from '../logo.svg';
 import '../App.css';
 import { useState, useEffect } from "react";
 import Login from './Login';
-
+import { FiEdit } from 'react-icons/fi';
+import {RiSave2Fill} from 'react-icons/ri'
+import {GiCancel} from 'react-icons/gi'
+import {AiFillDelete} from 'react-icons/ai'
 
 function ToDoItem(props) {
 
@@ -323,10 +326,10 @@ let handleNewToDoItemChange=(id,value,index)=>{
     handleNewToDoItemChange(todoItem.todoId,e.target.value,index)
   }} />
 
-                          <button className='editButton' style={{visibility: "visible"}} id={"editButton_"+todoItem.todoId} onClick={()=>handleEdit(todoItem.todoId)}>E</button>
-                          <button className='saveButton' style={{visibility: "hidden"}} id={"saveButton_"+todoItem.todoId} onClick={()=>handleSave(todoItem.todoId)} >S</button>
-                          <button className='cancelButton' style={{visibility: "hidden"}} id={"cancelButton_"+todoItem.todoId} onClick={()=>handleCancel(todoItem.todoId)}>C</button>
-                          <button className='deleteButton' style={{visibility: "visible"}} id={"deleteButton_"+todoItem.todoId} onClick={()=>handleDelete(todoItem.todoId)}>D</button>
+                          <button className='editButton' style={{visibility: "visible"}} id={"editButton_"+todoItem.todoId} onClick={()=>handleEdit(todoItem.todoId)}><FiEdit /></button>
+                          <button className='saveButton' style={{visibility: "hidden"}} id={"saveButton_"+todoItem.todoId} onClick={()=>handleSave(todoItem.todoId)} ><RiSave2Fill/></button>
+                          <button className='cancelButton' style={{visibility: "hidden"}} id={"cancelButton_"+todoItem.todoId} onClick={()=>handleCancel(todoItem.todoId)}><GiCancel/></button>
+                          <button className='deleteButton' style={{visibility: "visible"}} id={"deleteButton_"+todoItem.todoId} onClick={()=>handleDelete(todoItem.todoId)}><AiFillDelete/></button>
                     </li>
                   )}
   </ul>:<h1>No Todo Item to show</h1>}
