@@ -13,16 +13,17 @@ function ToDoItem(props) {
   const [emptyToDoList,setEmptyToDoList]=useState(props.emptyToDoList);
   const [newItem,setNewItem]=useState();
   const [userId,setUserId]=useState(props.userId);
-  let handleEdit=(todoId)=>
-  {
-  //const baseURL = "http://localhost:5000";
-  const baseURL ="https://calm-lime-antelope-vest.cyclic.app";
+  const [disableItem,setDisableItem]=useState(true);
+
+  let handleSave =(todoId)=>{
+
+    const baseURL ="https://calm-lime-antelope-vest.cyclic.app";
   try {
     fetch(`${baseURL}/editTodoItem/${todoId}`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        todoItem: "username"
+        todoItem: document.getElementById(todoId).value
       }),
     })
       .then((res) => res.json())
@@ -46,6 +47,44 @@ function ToDoItem(props) {
     alert("Login Fail")
     console.log(err);
   }
+  }
+  let handleEdit=(todoId)=>
+  {
+    //setDisableItem(false);
+    document.getElementById(todoId).removeAttribute("disabled");
+
+    //document.getElementById(todoId).setAttribute("disabled","true");
+  //const baseURL = "http://localhost:5000";
+  // const baseURL ="https://calm-lime-antelope-vest.cyclic.app";
+  // try {
+  //   fetch(`${baseURL}/editTodoItem/${todoId}`, {
+  //     method: "POST",
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({
+  //       todoItem: "username"
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       if (json.length != 0) {
+  //         console.log(json);
+
+  //         // setCheckLoginStatus(true);
+  //         // setTodoItems(json);
+  //         // setProfileUserName(json[0].userName);
+
+  //         // fetch(
+  //         //   `${baseURL}/getAccount/${profileUserId}`)
+  //         //   .then((res) => res.json())
+  //         //   .then((json) => {
+  //         //     setAccount(json);
+  //         //   })
+  //       }
+  //     })
+  // } catch (err) {
+  //   alert("Login Fail")
+  //   console.log(err);
+  // }
 }
 
 useEffect(() => {}, [emptyToDoList]); // <- add the count variable here
@@ -118,6 +157,11 @@ try {
 let handleAddText=(e)=>{
   setNewItem(e.target.value);
 }
+
+
+// let handleNewTodo=(e)=>{
+//   set
+// }
 
 let handleAdd=()=>
 {
@@ -231,6 +275,15 @@ useEffect(()=>{
 },[userId])
 
 
+let handleNewToDoItemChange=(id,value,index)=>{
+  const newTodo = [...todoItems];
+  newTodo[index].todoId=id;
+  newTodo[index].todoItem=value
+  newTodo[index].userId=userId
+  setTodoItems(newTodo);
+}
+
+
   return (
     <div>
       <div className="inputField">
@@ -239,10 +292,15 @@ useEffect(()=>{
       <button onClick={handleAdd}>+ Item</button>
       {emptyToDoList==false && todoItems.length!=0?<ul className="todoList">
     {todoItems.map(
-      (todoItem) => <li key={todoItem.todoId}>
-                          {todoItem.todoItem}
+      (todoItem,index) => <li key={todoItem.todoId}>
+                          
+                          <input id={todoItem.todoId} disabled={disableItem} className='inputField' type="text" value={todoItem.todoItem} placeholder="Enter New Item" onChange={(e) => {
+    handleNewToDoItemChange(todoItem.todoId,e.target.value,index)
+  }} />
+
                           <button onClick={()=>handleEdit(todoItem.todoId)}>Edit</button>
-                          <button onClick={()=>handleDelete(todoItem.todoId)}>Delete</button>
+                          <button onClick={()=>handleSave(todoItem.todoId)}>Save</button>
+                          <button onClick={()=>handleDelete(todoItem.todoId)}>-</button>
                     </li>
                   )}
   </ul>:<h1>No Todo Item to show</h1>}
