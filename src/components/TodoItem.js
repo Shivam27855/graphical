@@ -311,11 +311,13 @@ let handleNewToDoItemChange=(id,value,index)=>{
       <div className="inputField">
       <input  type="text" value={newItem} placeholder="Enter Item" onChange={handleAddText}/>
       <button onClick={handleAdd}>+</button>
+
+
     </div>
       
       {emptyToDoList==false && todoItems.length!=0?<ul className="todoList">
     {todoItems.map(
-      (todoItem,index) => <li key={todoItem.todoId}>
+      (todoItem,index) => <li className="todoField" key={todoItem.todoId}>
                           
                           <input id={todoItem.todoId} disabled={disableItem}  type="text" value={todoItem.todoItem} placeholder="Enter New Item" onChange={(e) => {
     handleNewToDoItemChange(todoItem.todoId,e.target.value,index)

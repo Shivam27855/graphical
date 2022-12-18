@@ -36,6 +36,13 @@ body{
   height: 45px;
 }
 
+.wrapper .todoField{
+  margin: 20px 0;
+  width: 100%;
+  display: flex;
+  
+}
+
 .todoList input{
 
   width: 70%;
