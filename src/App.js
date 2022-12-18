@@ -5,8 +5,8 @@ import Login from './components/Login';
 function App() {
      
   return (
-    <div className="App">
-      <h1>TO DO LISTsgit</h1>
+    <div className="App wrapper">
+      <h1>TO DO LIST</h1>
       {<Login/>}
       
     </div>

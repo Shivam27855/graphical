@@ -75,9 +75,9 @@ function Login() {
 
 
   return (checkLoginStatus==false?<form onSubmit={handleSubmit}>
-    <input type="text" value={username} placeholder="USERNAME" onChange={handleUserNameChange}/>
-    <input type="password" value={password} placeholder="PASSWORD" onChange={handlePasswordChange}/>
-    <button type="submit">LOGIN</button>
-  </form>:<div><button type="button" onClick={handleLogOut}>LOG OUT</button>{<ToDoItem emptyToDoList={emptyToDoList} item={todoItems} userId={userId} />}</div>);
+    <input className='inputField' type="text" value={username} placeholder="USERNAME" onChange={handleUserNameChange}/>
+    <input className='inputField' type="password" value={password} placeholder="PASSWORD" onChange={handlePasswordChange}/>
+    <button className='inputField' type="submit">LOGIN</button>
+  </form>:<div><button className='footer'onClick={handleLogOut}>LOG OUT</button>{<ToDoItem emptyToDoList={emptyToDoList} item={todoItems} userId={userId} />}</div>);
 }
 export default Login;

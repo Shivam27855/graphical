@@ -233,9 +233,11 @@ useEffect(()=>{
 
   return (
     <div>
-      <h1>adfas {userId}</h1>
-      <input type="text" value={newItem} placeholder="Enter Item" onChange={handleAddText}/><button onClick={handleAdd}>Create Item</button>
-      {emptyToDoList==false && todoItems.length!=0?<ul>
+      <div className="inputField">
+      <input className='inputField' type="text" value={newItem} placeholder="Enter Item" onChange={handleAddText}/>
+    </div>
+      <button onClick={handleAdd}>+ Item</button>
+      {emptyToDoList==false && todoItems.length!=0?<ul className="todoList">
     {todoItems.map(
       (todoItem) => <li key={todoItem.todoId}>
                           {todoItem.todoItem}
