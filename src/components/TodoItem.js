@@ -31,6 +31,8 @@ function ToDoItem(props) {
         if (json.length != 0) {
           console.log(json);
 
+          //document.getElementById(todoId).removeAttribute("disabled");
+          document.getElementById(todoId).setAttribute("disabled","true");
           // setCheckLoginStatus(true);
           // setTodoItems(json);
           // setProfileUserName(json[0].userName);
