@@ -78,6 +78,6 @@ function Login() {
     <input className='inputField' type="text" value={username} placeholder="USERNAME" onChange={handleUserNameChange}/>
     <input className='inputField' type="password" value={password} placeholder="PASSWORD" onChange={handlePasswordChange}/>
     <button className='inputField' type="submit">LOGIN</button>
-  </form>:<div><button className='footer'onClick={handleLogOut}>LOG OUT</button>{<ToDoItem emptyToDoList={emptyToDoList} item={todoItems} userId={userId} />}</div>);
+  </form>:<div>{<ToDoItem emptyToDoList={emptyToDoList} item={todoItems} userId={userId} />}<button className='footer logOutButton'onClick={handleLogOut}>LOG OUT</button></div>);
 }
 export default Login;

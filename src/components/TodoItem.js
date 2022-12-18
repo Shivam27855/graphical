@@ -15,6 +15,19 @@ function ToDoItem(props) {
   const [userId,setUserId]=useState(props.userId);
   const [disableItem,setDisableItem]=useState(true);
 
+  const [showEditButton,setShowEditButton]=useState(true);
+  const [showSaveChangesButton,setShowSaveChangesButton]=useState(false);
+  const [showCancelButton,setShowCancelButton]=useState(false);
+  
+
+  let handleCancel =(todoId)=>{
+          document.getElementById(todoId).setAttribute("disabled","true");
+          document.getElementById('editButton_'+todoId).style.visibility='visible';
+    document.getElementById('saveButton_'+todoId).style.visibility='hidden';
+    document.getElementById('cancelButton_'+todoId).style.visibility='hidden';
+          
+  }
+
   let handleSave =(todoId)=>{
 
     const baseURL ="https://calm-lime-antelope-vest.cyclic.app";
@@ -33,6 +46,9 @@ function ToDoItem(props) {
 
           //document.getElementById(todoId).removeAttribute("disabled");
           document.getElementById(todoId).setAttribute("disabled","true");
+          document.getElementById('editButton_'+todoId).style.visibility='visible';
+    document.getElementById('saveButton_'+todoId).style.visibility='hidden';
+    document.getElementById('cancelButton_'+todoId).style.visibility='hidden';
           // setCheckLoginStatus(true);
           // setTodoItems(json);
           // setProfileUserName(json[0].userName);
@@ -53,6 +69,10 @@ function ToDoItem(props) {
   let handleEdit=(todoId)=>
   {
     //setDisableItem(false);
+    document.getElementById('editButton_'+todoId).style.visibility='hidden';
+    document.getElementById('saveButton_'+todoId).style.visibility='visible';
+    document.getElementById('cancelButton_'+todoId).style.visibility='visible';
+
     document.getElementById(todoId).removeAttribute("disabled");
 
     //document.getElementById(todoId).setAttribute("disabled","true");
@@ -289,20 +309,22 @@ let handleNewToDoItemChange=(id,value,index)=>{
   return (
     <div>
       <div className="inputField">
-      <input className='inputField' type="text" value={newItem} placeholder="Enter Item" onChange={handleAddText}/>
+      <input  type="text" value={newItem} placeholder="Enter Item" onChange={handleAddText}/>
+      <button onClick={handleAdd}>+</button>
     </div>
-      <button onClick={handleAdd}>+ Item</button>
+      
       {emptyToDoList==false && todoItems.length!=0?<ul className="todoList">
     {todoItems.map(
       (todoItem,index) => <li key={todoItem.todoId}>
                           
-                          <input id={todoItem.todoId} disabled={disableItem} className='inputField' type="text" value={todoItem.todoItem} placeholder="Enter New Item" onChange={(e) => {
+                          <input id={todoItem.todoId} disabled={disableItem}  type="text" value={todoItem.todoItem} placeholder="Enter New Item" onChange={(e) => {
     handleNewToDoItemChange(todoItem.todoId,e.target.value,index)
   }} />
 
-                          <button onClick={()=>handleEdit(todoItem.todoId)}>Edit</button>
-                          <button onClick={()=>handleSave(todoItem.todoId)}>Save</button>
-                          <button onClick={()=>handleDelete(todoItem.todoId)}>-</button>
+                          <button className='editButton' style={{visibility: "visible"}} id={"editButton_"+todoItem.todoId} onClick={()=>handleEdit(todoItem.todoId)}>E</button>
+                          <button className='saveButton' style={{visibility: "hidden"}} id={"saveButton_"+todoItem.todoId} onClick={()=>handleSave(todoItem.todoId)} >S</button>
+                          <button className='cancelButton' style={{visibility: "hidden"}} id={"cancelButton_"+todoItem.todoId} onClick={()=>handleCancel(todoItem.todoId)}>C</button>
+                          <button className='deleteButton' style={{visibility: "visible"}} id={"deleteButton_"+todoItem.todoId} onClick={()=>handleDelete(todoItem.todoId)}>D</button>
                     </li>
                   )}
   </ul>:<h1>No Todo Item to show</h1>}
